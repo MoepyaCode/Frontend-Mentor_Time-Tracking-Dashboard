@@ -28,7 +28,7 @@ export default function Home() {
   )
 
   const renderActivities = () => (
-    <Wrapper className="flex flex-col gap-6">
+    <Wrapper className="flex flex-col gap-6 md:flex-row md:flex-wrap md:justify-evenly md:gap-[30px]">
       {
         userData?.activities && userData.activities.map((activity, index) => (
           <Activity key={index} activity={activity} />
@@ -41,7 +41,7 @@ export default function Home() {
 
   return (
     <Main className="font-rubik bg-[#0E1323] grid place-items-center px-6 py-[81px]">
-      <Container className="flex flex-col w-full gap-4">
+      <Container className="flex flex-col w-full gap-4 max-w-[1110px] md:flex-row md:gap-[30px]">
         {renderUserCard()}
         {renderActivities()}
       </Container>
