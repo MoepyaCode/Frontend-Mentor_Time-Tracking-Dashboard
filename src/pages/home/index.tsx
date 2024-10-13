@@ -5,6 +5,7 @@ import { assets } from "@app-assets";
 
 export default function Home() {
   const [userData, setUserData] = useState<UserI | null>(null)
+  const [currentTimeFrameView, setCurrentTimeFrameView] = useState<TimeFrame>('weekly')
 
   useEffect(() => {
     if (userData === null) {
@@ -23,21 +24,21 @@ export default function Home() {
     }
   }, [userData, setUserData])
 
+  const handleTimeFrameChange = (timeFrame: TimeFrame) => setCurrentTimeFrameView(timeFrame)
+
   const renderUserCard = () => (
-    userData?.details && <UserCard user={userData.details} />
+    userData?.details && <UserCard handleTimeFrameChange={handleTimeFrameChange} {...userData.details} currentTimeFrameView={currentTimeFrameView} />
   )
 
   const renderActivities = () => (
     <Wrapper className="flex flex-col gap-6 md:flex-row md:flex-wrap md:justify-evenly md:gap-[30px]">
       {
         userData?.activities && userData.activities.map((activity, index) => (
-          <Activity key={index} activity={activity} />
+          <Activity {...activity} currentTimeFrameView={currentTimeFrameView} key={index} />
         ))
       }
     </Wrapper>
   )
-
-  console.log({ userData })
 
   return (
     <Main className="font-rubik bg-[#0E1323] grid place-items-center px-6 py-[81px]">

@@ -19,13 +19,13 @@ declare interface ActivityI {
 
 declare type TimeFrame = 'daily' | 'weekly' | 'monthly';
 
-interface Period {
+interface PeriodI {
     current: number;
     previous: number;
 }
 
-type TimeFrameType = {
-    [key in TimeFrame]: Period;
+declare type TimeFrameType = {
+    [key in TimeFrame]: PeriodI;
 }
 
 
